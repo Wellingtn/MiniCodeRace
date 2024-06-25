@@ -1,0 +1,36 @@
+def numero_de_mesas(dicio, lista):
+    while True:
+        if len(dicio) < 1:
+            qtd_mesas = int(input('Quantas mesas seu restaurante possui? '))
+            for i in range(qtd_mesas):
+                dicio['nome'] = ''
+                dicio['mesa'] = i
+                lista.append(dicio).copy()
+                dicio.clear()
+        else:
+            cont = int(input('''Voce ja regitrou um numero de mesas. deseja cadastrar novamente?
+    [1] Sim
+    [2] Não'''))
+            if cont == 2:
+                break
+    return lista
+
+def reserva(lista):
+    print('=-=-=Reserva de mesa=-=-=')
+    qtd_pessoas = int(input('Reserva para quantas pessoas? '))
+    if qtd_pessoas % 4 == 0:
+        qtd_mesas = int(qtd_pessoas / 4)
+    elif qtd_pessoas % 4 != 0:
+        qtd_mesas = int(qtd_pessoas / 4) + 1
+    checagem(lista)
+
+
+def checagem(lista):
+    while True:
+        for i in range(len(lista)):
+            if lista[i]['nome'] == '':
+                lista[i]['nome'] = input('Nome: ')
+                break
+        print('não foi possivel fazer sua reserva.')
+
+
