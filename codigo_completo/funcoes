@@ -1,4 +1,11 @@
 def numero_de_mesas(dicio, lista):
+    '''
+    Pede o numero total de mesas do restaurante ao usuário, e preenche o dicionario
+    com nomes e mesa. mesa sem nome significa livre.
+    :param dicio: vai guardar nome e mesa
+    :param lista: recebe copia de dicionario e depois apaga dicionario
+    :return: N/D
+    '''
     while True:
         if len(lista) < 1:
             qtd_mesas = int(input('Quantas mesas seu restaurante possui? '))
@@ -14,16 +21,22 @@ def numero_de_mesas(dicio, lista):
     Sua opção: '''))
             if cont == 2:
                 break
-#ok*- retirada do return
+#ok
 
 
 def reserva(lista):
+    '''
+    Faz reserva de clientes na lista, alterando o nome do dicionario da mesa
+    se existir alguma livre.
+    :param lista: vai alterar o indice da mesa e nome para fazer a reserva
+    :return:N/D
+    '''
     vermelho = '\033[31m'
     reset = '\033[0;0m'
     print('=-=-=Reserva de mesa=-=-=')
     qtd_pessoas = int(input('Reserva para quantas pessoas? '))
     qtd_mesas = quantidade_mesas(qtd_pessoas)
-    mesas_livres = checagem_mesas(lista, qtd_mesas)
+    mesas_livres = checagem_mesas(lista)
     if mesas_livres >= qtd_mesas:
         cont_reserva = 0
         for c in range(len(lista)):
@@ -34,18 +47,29 @@ def reserva(lista):
                 break
     else:
         print(f'{vermelho}ERRO: não foi possivel fazer a reserva, pois o numero solicitado é maior que o de mesas livres.{reset}')
-
 #ok
 
 
-def checagem_mesas(lista, qtd_mesas):
+def checagem_mesas(lista):
+    '''
+    Checa se existem mesas livres que suportem o pedido de mesas do cliente
+    :param lista:verifica quantas mesas livres tem disponiveis.
+    :return: quatidade de mesas livres
+    '''
     mesas_livres = 0
     for c in range(len(lista)):
         if lista[c]['nome'] == '':
             mesas_livres += 1
     return mesas_livres
+#ok
+
 
 def desfazer_reservas(lista):
+    '''
+    Desfaz uma reserva se o nome do cliente estiver em uma mesa na lista
+    :param lista:verifica se o nome do cliente que quer desfazer reserva esta na lista
+    :return:N/D
+    '''
     vermelho = '\033[31m'
     reset = '\033[0;0m'
     realizado = False
@@ -58,20 +82,33 @@ def desfazer_reservas(lista):
             break
     if realizado == False:
         print(f'{vermelho}ERRO: Não foi possivel encontrar uma mesa com o nome {nome_titular} para defazer a reserva.{reset}')
+#ok
 
 
 def mostrar_reservas(lista):
+    '''
+    vaii mostrar cada cliente e sua respectiva mesa
+    :param lista:lugar onde é pego os nomes dos clientes
+    :return:N/D
+    '''
     for c in range(len(lista)):
         print(f'nome do cliente: {lista[c]['nome']} -> mesa: {lista[c]['mesa']}', end='\n')
+#ok
 
 
 def quantidade_mesas(qtd_pessoas):
+    '''
+    checa quantas mesas cada cliente precisa reservar de acordo com a quantidade de pessoas
+    :param qtd_pessoas: quantidade de pessoas para verificar quantas mesas precisa reservar.
+    :return:N/D
+    '''
     if qtd_pessoas % 4 == 0:
         qtd_mesas = int(qtd_pessoas / 4)
         return qtd_mesas
     elif qtd_pessoas % 4 != 0:
         qtd_mesas = int(qtd_pessoas / 4) + 1
         return qtd_mesas
+#ok
 
 
 
