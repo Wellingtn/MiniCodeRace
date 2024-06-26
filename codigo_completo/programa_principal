@@ -1,0 +1,30 @@
+import funcoes
+def main():
+    #mini banco de dados do restaurante
+    dicionario = dict()
+    lista = list()
+
+    #menu
+    while True:
+        escolha = int(input('''             =-=-=MENU=-=-=
+    [ 1 ] Adicionar mesa ao restaurante
+    [ 2 ] Realizar reserva
+    [ 3 ] Desafazer reserva
+    [ 4 ] Mostrar reservas
+    [ 5 ] Sair do programa
+    Sua opção: '''))
+        match escolha:
+            case 1:
+                funcoes.numero_de_mesas(dicionario, lista)
+            case 2:
+                funcoes.reserva(lista)
+            case 3:
+                funcoes.desfazer_reservas(lista)
+            case 4:
+                funcoes.mostrar_reservas(lista)
+            case 5:
+                break
+            case _:
+                print('ERRO: Opção invalida')
+
+main()
